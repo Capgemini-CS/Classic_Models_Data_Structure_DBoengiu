@@ -39,3 +39,55 @@ WHERE lastName LIKE '__n%';
 
 
 
+
+----------------QUERIES PERFORMED ON PRODUCTS TABLE-------------------------
+
+SELECT * FROM classicmodels.products;
+
+//--------------SELECTED THE PRODUCT WITH THE LOWEST PRICE----------------
+
+SELECT productName, productLine, MIN(buyPrice)  FROM classicmodels.products;
+
+//--------------SELECTED THE PRODUCT WITH THE HIGHEST PRICE----------------
+
+SELECT productName, productLine, MAX(buyPrice) FROM classicmodels.products;
+
+//--------------SELECTED THE TOTAL NUMBER OF PRODUCTS----------------
+
+SELECT COUNT(productName) FROM classicmodels.products;
+
+//--------------SELECTED THE TOTAL NUMBER OF DISTINCT PRODUCTS----------------
+
+SELECT COUNT(DISTINCT productName) FROM classicmodels.products;
+
+//--------------SELECTED NUMBER OF HARLEY DAVIDSONS----------------
+
+SELECT COUNT(*) FROM classicmodels.products WHERE productName LIKE '%Harley Davidson%';
+
+//--------------SELECTED AVERAGE PRICE----------------
+
+SELECT AVG(buyPrice) FROM classicmodels.products;
+
+//--------------SELECTED THE TOTAL NUMBER OF PRODUCTS FOR EACH PRODUCT LINE----------------
+
+SELECT COUNT(productCode), productLine
+FROM classicmodels.products
+GROUP BY productLine
+ORDER BY COUNT(productCode) DESC;
+
+//--------------SELECTED THE TOTAL NUMBER OF PRODUCTS FOR EACH PRODUCT SCALE----------------
+
+SELECT COUNT(productCode), productScale, quantityInStock
+FROM classicmodels.products
+GROUP BY productScale
+ORDER BY quantityInStock DESC;
+
+
+//--------------SELECTED THE TOTAL NUMBER OF PRODUCTS FOR EACH PRODUCT LINE FILTERED BY AVG PRICE----------------
+
+
+SELECT COUNT(productCode), productLine, AVG(buyPrice)
+FROM classicmodels.products
+GROUP BY productLine
+HAVING AVG(buyPrice) > 50
+ORDER BY COUNT(productCode) DESC;
