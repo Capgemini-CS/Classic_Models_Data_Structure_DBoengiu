@@ -103,3 +103,39 @@ FROM orderdetails
 WHERE productCode IN (
 	SELECT productCode FROM products
 );
+
+
+
+//----------------QUERIES PERFORMED ON PAYMENT--------------
+
+SELECT * FROM classicmodels.payments;
+USE classicmodels;
+
+//----------------SELECTED AVG AMOUNT GROUOED BY PAYMENT DATE--------------------
+
+SELECT paymentDate, AVG(amount)
+FROM classicmodels.payments
+GROUP BY paymentDate
+ORDER BY AVG(amount) DESC;
+
+
+//-----------------SELECTED AMOUNT GROUPED BY CUSTOMER_NUMBER----------------
+
+SELECT customerNumber, amount
+FROM classicmodels.payments
+GROUP BY customerNumber
+ORDER BY amount DESC;
+
+
+
+SELECT 
+    customerNumber, 
+    paymentDate, 
+    amount
+FROM
+    payments
+WHERE
+    amount > (SELECT 
+            AVG(amount)
+        FROM
+            payments);
