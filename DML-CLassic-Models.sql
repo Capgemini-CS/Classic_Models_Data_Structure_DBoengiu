@@ -91,3 +91,15 @@ FROM classicmodels.products
 GROUP BY productLine
 HAVING AVG(buyPrice) > 50
 ORDER BY COUNT(productCode) DESC;
+
+
+
+//-----------QUERIES PERFORMED ON ORDER DETAILS--------------
+
+//---------- QUERIED THE QUANTITY OF PRODUCTS ORDERED-----------
+
+SELECT quantityOrdered, productCode
+FROM orderdetails
+WHERE productCode IN (
+	SELECT productCode FROM products
+);
