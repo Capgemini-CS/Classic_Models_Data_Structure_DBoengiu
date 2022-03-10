@@ -194,6 +194,19 @@ WHERE
             payments);
 
 
+//----------- TRANSACTION FOR ADDING INFO INTO PAYMENTS AND ORDER_DETAILS TABLES---------
+
+START TRANSACTION;
+
+INSERT INTO payments (customerNumber, checkNumber, paymentDate, amount)
+VALUES (103, 'ZL224557', '2004-09-09', 200);
+
+INSERT INTO orderDetails (orderNumber, productCode, quantityOrdered, priceEach, orderLineNumber) 
+VALUES (10102, 'S18_1749', 12, 50, 4);
+
+COMMIT;
+
+
 
 //-------------QUERIES PERFORMED ON OFFICE TABLE----------
 
