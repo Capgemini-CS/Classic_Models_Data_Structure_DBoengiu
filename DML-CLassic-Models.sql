@@ -98,6 +98,32 @@ HAVING AVG(buyPrice) > 50
 ORDER BY COUNT(productCode) DESC;
 
 
+//------------------TRANSACTION TO ADD NEW PRODUCTS-----------------------
+
+
+-- 1. Start a new transaction  
+  
+START TRANSACTION;  
+  
+-- 2. Get the highest buyPrice  
+  
+SELECT @buyPrice:= MAX(buyPrice) FROM products;  
+  
+-- 3. Insert a new record into the products table  
+  
+INSERT INTO products(productCode, productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)   
+VALUES ('S10_1279', '1970 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:10', 'Min Din Diecast', 'This replica features...', 8000, 50, 100);  
+  
+
+  
+INSERT INTO products(productCode, productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)   
+VALUES ('S11_1279', '1971 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:12', 'Lin Din Diecast', 'This replica features...', 800, 100, 500);  
+  
+  
+-- 4. Commit changes      
+COMMIT;  
+
+
 
 //-----------QUERIES PERFORMED ON ORDER DETAILS--------------
 
