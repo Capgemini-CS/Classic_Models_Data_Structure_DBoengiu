@@ -104,6 +104,12 @@ WHERE productCode IN (
 	SELECT productCode FROM products
 );
 
+//----------QURIED QUANTITY_ORDERED, PRODUCT_NAME AND PRICE------------
+
+SELECT orderdetails.quantityOrdered, orderdetails.priceEach, products.productName
+FROM orderdetails
+INNER JOIN products ON orderdetails.productCode = products.productCode;
+
 
 
 //----------------QUERIES PERFORMED ON PAYMENT--------------
@@ -117,6 +123,13 @@ SELECT paymentDate, AVG(amount)
 FROM classicmodels.payments
 GROUP BY paymentDate
 ORDER BY AVG(amount) DESC;
+
+//-----------------QUERIED PAYMENT_DATE, AMOUNT AND CUSTOMER_NAME-----------
+
+SELECT payments.paymentDate, payments.amount, customers.customerName
+FROM payments
+INNER JOIN customers
+ON payments.customerNumber = customers.customerNumber;
 
 
 //-----------------SELECTED AMOUNT GROUPED BY CUSTOMER_NUMBER----------------
