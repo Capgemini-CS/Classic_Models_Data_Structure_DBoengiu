@@ -104,6 +104,15 @@ WHERE productCode IN (
 	SELECT productCode FROM products
 );
 
+//---------QUERIED QUANTITY, PRICE AND BUYER-------------------------------
+
+SELECT orderdetails.quantityOrdered, orderdetails.priceEach, products.productName, orders.customerNumber, customers.customerName, orderdetails.quantityOrdered * orderdetails.priceEach AS totalCost
+FROM orderdetails
+INNER JOIN products ON orderdetails.productCode = products.productCode
+INNER JOIN orders ON orderdetails.orderNumber = orders.orderNumber
+INNER JOIN customers ON orders.customerNumber = customers.customerNumber
+;
+
 //----------QURIED QUANTITY_ORDERED, PRODUCT_NAME AND PRICE------------
 
 SELECT orderdetails.quantityOrdered, orderdetails.priceEach, products.productName
