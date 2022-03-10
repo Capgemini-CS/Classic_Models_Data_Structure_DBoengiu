@@ -37,6 +37,11 @@ WHERE lastName LIKE 't%n';
 SELECT * FROM classicmodels.employees
 WHERE lastName LIKE '__n%';
 
+//----------ADDED INDEX ON EMP_NUMBER------------------
+
+CREATE INDEX emp_no ON employees(employeeNumber);
+
+
 
 
 
@@ -161,3 +166,11 @@ WHERE
             AVG(amount)
         FROM
             payments);
+
+
+
+//-------------QUERIES PERFORMED ON OFFICE TABLE----------
+
+//------------ADDED INDEX ON PHONE_NO--------------------
+
+CREATE INDEX phone_index ON offices(phone);
