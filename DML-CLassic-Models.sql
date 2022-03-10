@@ -123,6 +123,22 @@ VALUES ('S11_1279', '1971 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:1
 -- 4. Commit changes      
 COMMIT;  
 
+//----------SELECT PRODUCT_CATEGORY WITH LOWEST PRICE------------------
+
+SELECT productLine FROM products 
+WHERE buyPrice =( SELECT MIN(buyPrice) from products);
+
+//--------------SELECT PRODUCTS WHERE QUANTITY ORDERED > 30-------------------------
+
+SELECT productName FROM   products  WHERE  
+productCode IN (SELECT productCode FROM orderDetails WHERE quantityOrdered > 30 );
+
+//--------------SELECT SHIPPED PRODUCTS-------------------------------
+
+SELECT productName From products WHERE 
+productCode = (SELECT productCode FROM orderDetails WHERE 
+orderNumber = (SELECT orderNumber  FROM orders WHERE status = 'Shipped'));
+
 
 
 //-----------QUERIES PERFORMED ON ORDER DETAILS--------------
